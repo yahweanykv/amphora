@@ -62,8 +62,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -74,8 +78,7 @@
               "RelativeToolTip": "src\\main.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-01-17T00:16:45.202Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-17T00:16:45.202Z"
             },
             {
               "$type": "Document",
@@ -87,8 +90,7 @@
               "RelativeToolTip": "src\\components\\about.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-01-17T00:14:08.021Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-17T00:14:08.021Z"
             },
             {
               "$type": "Document",
@@ -125,8 +127,7 @@
               "RelativeToolTip": "src\\components\\footer.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-01-16T23:17:32.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-16T23:17:32.464Z"
             },
             {
               "$type": "Document",
@@ -138,8 +139,7 @@
               "RelativeToolTip": "src\\components\\header.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-01-16T23:16:57.34Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-16T23:16:57.34Z"
             },
             {
               "$type": "Document",
@@ -175,8 +175,7 @@
               "RelativeToolTip": "src\\App.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-01-16T21:46:04.061Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-16T21:46:04.061Z"
             },
             {
               "$type": "Document",
