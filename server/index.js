@@ -5,36 +5,29 @@ import bcrypt from 'bcrypt';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import { fileURLToPath } from 'url'; // Äëÿ ïîëó÷åíèÿ __dirname â ES6-ìîäóëÿõ
+import { fileURLToPath } from 'url';
 
-// Ïîëó÷àåì __dirname â ES6-ìîäóëÿõ
+// Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ __dirname Ð² ES6-Ð¼Ð¾Ð´ÑƒÐ»ÑÑ…
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Îáñëóæèâàåì ñòàòè÷åñêèå ôàéëû èç ïàïêè client/dist
-app.use(express.static(path.join(__dirname, '../client/dist')));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-});
-
-// API-ðîóòû
-app.get('/api', (req, res) => {
-    res.json({ message: 'Hello from the server!' });
-});
-
-// Çàãðóæàåì ïåðåìåííûå îêðóæåíèÿ
+// Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ñ… Ð¾ÐºÑ€ÑƒÐ¶ÐµÐ½Ð¸Ñ
 dotenv.config();
 
+// Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ
 const app = express();
 const PORT = process.env.PORT || 5001;
-const JWT_SECRET = process.env.JWT_SECRET; // Ñåêðåòíûé êëþ÷ äëÿ JWT
-const MONGODB_URI = process.env.MONGODB_URI; // Ñòðîêà ïîäêëþ÷åíèÿ ê MongoDB
+const JWT_SECRET = process.env.JWT_SECRET; // Ð¡ÐµÐºÑ€ÐµÑ‚Ð½Ñ‹Ð¹ ÐºÐ»ÑŽÑ‡ Ð´Ð»Ñ JWT
+const MONGODB_URI = process.env.MONGODB_URI; // Ð¡Ñ‚Ñ€Ð¾ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ Ðº MongoDB
 
-// Íàñòðîéêà ñòàòè÷åñêîé ïàïêè "dist" äëÿ êëèåíòà (React + Vite)
-app.use(express.static(path.join(__dirname, '../dist'), {
+// Middleware
+app.use(cors()); // Ð’ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ CORS
+app.use(express.json()); // ÐŸÐ°Ñ€ÑÐ¸Ð½Ð³ JSON-Ñ‚ÐµÐ»Ð° Ð·Ð°Ð¿Ñ€Ð¾ÑÐ¾Ð²
+
+// ÐžÐ±ÑÐ»ÑƒÐ¶Ð¸Ð²Ð°Ð½Ð¸Ðµ ÑÑ‚Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ñ… Ñ„Ð°Ð¹Ð»Ð¾Ð² Ð¸Ð· Ð¿Ð°Ð¿ÐºÐ¸ "client/dist"
+app.use(express.static(path.join(__dirname, '../client/dist'), {
     setHeaders: (res, filePath) => {
-        // Óñòàíàâëèâàåì ïðàâèëüíûå MIME-òèïû äëÿ ôàéëîâ
+        // Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ñ… MIME-Ñ‚Ð¸Ð¿Ð¾Ð² Ð´Ð»Ñ Ñ„Ð°Ð¹Ð»Ð¾Ð²
         if (filePath.endsWith('.html')) {
             res.setHeader('Content-Type', 'text/html; charset=UTF-8');
         } else if (filePath.endsWith('.css')) {
@@ -45,19 +38,21 @@ app.use(express.static(path.join(__dirname, '../dist'), {
     }
 }));
 
-// Middleware
-app.use(cors()); // Ðàçðåøàåì CORS
-app.use(express.json()); // Ïàðñèì JSON-òåëà çàïðîñîâ
-
-// Ïîäêëþ÷åíèå ê MongoDB
-mongoose.connect(MONGODB_URI, {
-}).then(() => {
-    console.log('Connected to MongoDB successfully');
-}).catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
+// ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚ Ð´Ð»Ñ Ð²ÑÐµÑ… Ð¾ÑÑ‚Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð·Ð°Ð¿Ñ€Ð¾ÑÐ¾Ð² (SPA)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
-// Ñõåìû è ìîäåëè MongoDB
+// ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº MongoDB
+mongoose.connect(MONGODB_URI, {})
+    .then(() => {
+        console.log('Connected to MongoDB successfully');
+    })
+    .catch((error) => {
+        console.error('Error connecting to MongoDB:', error);
+    });
+
+// Ð¡Ñ…ÐµÐ¼Ñ‹ Ð¸ Ð¼Ð¾Ð´ÐµÐ»Ð¸ MongoDB
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -70,13 +65,13 @@ const WishlistItemSchema = new mongoose.Schema({
 
 const WishlistSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
-    items: [WishlistItemSchema], // Ìàññèâ ýëåìåíòîâ âèøëèñòà
+    items: [WishlistItemSchema], // ÐœÐ°ÑÑÐ¸Ð² ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚Ð°
 });
 
 const User = mongoose.model('User', UserSchema);
 const Wishlist = mongoose.model('Wishlist', WishlistSchema);
 
-// Middleware äëÿ àóòåíòèôèêàöèè JWT
+// Middleware Ð´Ð»Ñ Ð°ÑƒÑ‚ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ð¸ JWT
 const authenticateJWT = (req, res, next) => {
     const token = req.header('Authorization')?.split(' ')[1];
     if (!token) return res.status(401).json({ error: 'Access denied' });
@@ -90,9 +85,9 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
-// Ðîóòû
+// API-Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ñ‹
 
-// Ðåãèñòðàöèÿ ïîëüçîâàòåëÿ
+// Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -105,7 +100,7 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
-// Ëîãèí ïîëüçîâàòåëÿ
+// Ð’Ñ…Ð¾Ð´ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -125,7 +120,7 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Ïîëó÷åíèå âèøëèñòà ïîëüçîâàòåëÿ
+// ÐŸÐ¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚Ð° Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
 app.get('/api/wishlist', authenticateJWT, async (req, res) => {
     try {
         const wishlist = await Wishlist.findOne({ userId: req.userId }).populate('userId');
@@ -140,7 +135,7 @@ app.get('/api/wishlist', authenticateJWT, async (req, res) => {
     }
 });
 
-// Äîáàâëåíèå ýëåìåíòà â âèøëèñò
+// Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° Ð² Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚
 app.post('/api/wishlist/items', authenticateJWT, async (req, res) => {
     const { name, price } = req.body;
     try {
@@ -155,7 +150,7 @@ app.post('/api/wishlist/items', authenticateJWT, async (req, res) => {
     }
 });
 
-// Óäàëåíèå ýëåìåíòà èç âèøëèñòà
+// Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° Ð¸Ð· Ð²Ð¸ÑˆÐ»Ð¸ÑÑ‚Ð°
 app.delete('/api/wishlist/items/:itemId', authenticateJWT, async (req, res) => {
     const { itemId } = req.params;
     try {
@@ -170,5 +165,5 @@ app.delete('/api/wishlist/items/:itemId', authenticateJWT, async (req, res) => {
     }
 });
 
-// Çàïóñê ñåðâåðà
+// Ð—Ð°Ð¿ÑƒÑÐº ÑÐµÑ€Ð²ÐµÑ€Ð°
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

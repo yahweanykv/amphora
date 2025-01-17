@@ -11,8 +11,8 @@ export default [
         languageOptions: {
             ecmaVersion: 2020,
             globals: {
-                ...globals.browser, // Глобальные переменные для браузера
-                ...globals.node,    // Глобальные переменные для Node.js
+                ...globals.browser, // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                ...globals.node,    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Node.js
             },
             parserOptions: {
                 ecmaVersion: 'latest',
@@ -21,7 +21,7 @@ export default [
             },
         },
         env: {
-            node: true, // Указываем, что код выполняется в среде Node.js
+            node: true, // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ Node.js
             browser: true
         },
         settings: { react: { version: '18.3' } },
