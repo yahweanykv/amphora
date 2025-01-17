@@ -1,0 +1,231 @@
+@charset "UTF-8";
+
+/* Основные стили для body */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Чтобы футер прижимался к низу */
+}
+
+/* Контейнер для всего приложения */
+.app {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #333;
+}
+
+/* Основной контейнер для контента */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
+}
+
+    /* Стили для заголовка "Войдите, чтобы получить доступ к своим желаниям" */
+    .container h1 {
+        text-align: center; /* Выравнивание текста по центру */
+        font-family: 'Press Start 2P', cursive; /* Шрифт */
+        font-size: 18px; /* Размер шрифта */
+        color: #fff; /* Цвет текста */
+        margin-top: 40px; /* Отступ сверху */
+        margin-bottom: 20px; /* Отступ снизу */
+    }
+
+/* Стили для формы входа/регистрации */
+.auth-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между элементами формы */
+}
+
+    .auth-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #444;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #333;
+        color: #fff;
+    }
+
+/* Контейнер для кнопок */
+.auth-buttons {
+    display: flex;
+    gap: 10px; /* Расстояние между кнопками */
+    justify-content: center; /* Выравнивание кнопок по центру */
+}
+
+/* Общие стили для кнопок */
+.auth-form button {
+    width: 100%; /* Ширина кнопок */
+    padding: 15px; /* Увеличиваем размер кнопок */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+}
+
+    /* Стили для кнопки входа */
+    .auth-form button.login-button {
+        background-color: #4682B4; /* Цвет кнопки входа */
+    }
+
+        .auth-form button.login-button:hover {
+            background-color: #357ABD; /* Цвет кнопки входа при наведении */
+        }
+
+    /* Стили для кнопки регистрации */
+    .auth-form button.register-button {
+        background-color: #2E8B57; /* Цвет кнопки регистрации */
+    }
+
+        .auth-form button.register-button:hover {
+            background-color: #277A4A; /* Цвет кнопки регистрации при наведении */
+        }
+
+/* Стили для сетки вишлиста */
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Увеличиваем минимальную ширину элементов */
+    gap: 20px; /* Расстояние между элементами */
+    margin-top: 20px;
+    justify-content: center; /* Выравнивание по центру */
+    padding: 20px; /* Отступы внутри контейнера */
+}
+
+/* Стили для элементов вишлиста */
+.wishlist-item {
+    background-color: #222; /* Цвет фона */
+    padding: 20px; /* Внутренние отступы */
+    border-radius: 8px; /* Скругление углов */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+    .wishlist-item h3 {
+        margin-top: 0;
+        color: #fff; /* Цвет текста */
+        font-family: 'Press Start 2P', cursive; /* Шрифт */
+        font-size: 16px; /* Размер шрифта */
+    }
+
+    .wishlist-item p {
+        margin: 10px 0;
+        color: #ccc; /* Цвет текста */
+        font-family: 'Press Start 2P', cursive; /* Шрифт */
+        font-size: 14px; /* Размер шрифта */
+    }
+
+    /* Стили для кнопок вишлиста */
+    .wishlist-item button {
+        padding: 12px 24px; /* Увеличиваем размер кнопок */
+        background-color: #f44336; /* Цвет кнопки */
+        color: #fff; /* Цвет текста */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Press Start 2P', cursive; /* Шрифт */
+        font-size: 14px; /* Размер шрифта */
+        margin-top: 10px; /* Отступ сверху */
+    }
+
+        .wishlist-item button:hover {
+            background-color: #e53935; /* Цвет кнопки при наведении */
+        }
+
+/* Стили для кнопки "Добавить желаемое" */
+.add-wishlist-button {
+    display: block; /* Делаем кнопку блочным элементом */
+    margin: 20px auto; /* Центрирование кнопки */
+    padding: 15px 30px; /* Увеличиваем размер кнопки */
+    background-color: #4CAF50; /* Цвет кнопки */
+    color: #fff; /* Цвет текста */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive; /* Шрифт */
+    font-size: 16px; /* Размер шрифта */
+}
+
+    .add-wishlist-button:hover {
+        background-color: #45a049; /* Цвет кнопки при наведении */
+    }
+
+/* Стили для шапки (Header) */
+.header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+    .header .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 24px;
+    }
+
+    .header nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+
+        .header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+        }
+
+            .header nav ul li a:hover {
+                color: #4CAF50;
+            }
+
+/* Стили для футера (Footer) */
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* Чтобы футер прижимался к низу */
+}
+
+    .footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .footer p {
+        margin: 0;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 12px;
+    }

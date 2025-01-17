@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\public",
+    "\\server",
+    "\\server\\controllers",
+    "\\server\\models",
+    "\\server\\routes",
+    "\\src",
+    "\\src\\assets",
+    "\\src\\components"
+  ],
+  "PreviewInSolutionExplorer": false
+}
