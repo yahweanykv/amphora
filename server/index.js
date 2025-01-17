@@ -11,16 +11,18 @@ import { fileURLToPath } from 'url'; // Для получения __dirname в ES6-модулях
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Загружаем переменные окружения
 dotenv.config();
 
 const app = express();
-const PORT = 5001;
-const JWT_SECRET = 'your_jwt_secret_key';
+const PORT = process.env.PORT || 5001;
+const JWT_SECRET = process.env.JWT_SECRET; // Секретный ключ для JWT
+const MONGODB_URI = process.env.MONGODB_URI; // Строка подключения к MongoDB
 
-// Указываем папку "dist" для статических файлов
+// Настройка статической папки "dist" для клиента (React + Vite)
 app.use(express.static(path.join(__dirname, '../dist'), {
     setHeaders: (res, filePath) => {
-        // Устанавливаем правильные заголовки для файлов
+        // Устанавливаем правильные MIME-типы для файлов
         if (filePath.endsWith('.html')) {
             res.setHeader('Content-Type', 'text/html; charset=UTF-8');
         } else if (filePath.endsWith('.css')) {
@@ -32,18 +34,18 @@ app.use(express.static(path.join(__dirname, '../dist'), {
 }));
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // Разрешаем CORS
+app.use(express.json()); // Парсим JSON-тела запросов
 
-// MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/authApp', {
+// Подключение к MongoDB
+mongoose.connect(MONGODB_URI, {
 }).then(() => {
     console.log('Connected to MongoDB successfully');
 }).catch((error) => {
     console.error('Error connecting to MongoDB:', error);
 });
 
-// Модели
+// Схемы и модели MongoDB
 const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -62,7 +64,7 @@ const WishlistSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 const Wishlist = mongoose.model('Wishlist', WishlistSchema);
 
-// Middleware для проверки JWT
+// Middleware для аутентификации JWT
 const authenticateJWT = (req, res, next) => {
     const token = req.header('Authorization')?.split(' ')[1];
     if (!token) return res.status(401).json({ error: 'Access denied' });
@@ -76,7 +78,9 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
-// Маршруты
+// Роуты
+
+// Регистрация пользователя
 app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -89,6 +93,7 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
+// Логин пользователя
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -108,6 +113,7 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+// Получение вишлиста пользователя
 app.get('/api/wishlist', authenticateJWT, async (req, res) => {
     try {
         const wishlist = await Wishlist.findOne({ userId: req.userId }).populate('userId');
@@ -122,6 +128,7 @@ app.get('/api/wishlist', authenticateJWT, async (req, res) => {
     }
 });
 
+// Добавление элемента в вишлист
 app.post('/api/wishlist/items', authenticateJWT, async (req, res) => {
     const { name, price } = req.body;
     try {
@@ -136,6 +143,7 @@ app.post('/api/wishlist/items', authenticateJWT, async (req, res) => {
     }
 });
 
+// Удаление элемента из вишлиста
 app.delete('/api/wishlist/items/:itemId', authenticateJWT, async (req, res) => {
     const { itemId } = req.params;
     try {
