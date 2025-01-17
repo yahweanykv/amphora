@@ -1,24 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Импорт Link из react-router-dom
-import logo from '../assets/logo.png'; // Импорт логотипа
-import './Header.css'; // Стили для шапки
+import { Link } from 'react-router-dom'; // пїЅпїЅпїЅпїЅпїЅпїЅ Link пїЅпїЅ react-router-dom
+import logo from '../assets/logo.png'; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+import './Header.css'; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 
 const Header = () => {
     return (
         <header className="header">
             <div className="container">
-                {/* Логотип и название сайта */}
+                {/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */}
                 <div className="logo-container">
                     <img src={logo} alt="logo" className="logo" />
                     <h1>Amphora</h1>
                 </div>
 
-                {/* Навигация */}
+                {/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */}
                 <nav>
                     <ul>
                         <li><a href="/">Home</a></li>
-                        <li><Link to="/about">About</Link></li> {/* Ссылка на страницу "About" */}
+                        <li><Link to="/about">About</Link></li> {/* пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "About" */}
                     </ul>
                 </nav>
             </div>

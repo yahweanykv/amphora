@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css'; // Ñòèëè äëÿ ôóòåğà
+import './Footer.css'; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 const Footer = () => {
     return (
