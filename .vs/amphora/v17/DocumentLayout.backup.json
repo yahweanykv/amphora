@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "server\\.env",
               "ToolTip": "D:\\Users\\yahweanykv\\source\\repos\\amphora\\server\\.env",
               "RelativeToolTip": "server\\.env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-01-17T01:40:19.779Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "server\\index.js",
               "ViewState": "AgIAADYAAAAAAAAAAAAAACgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-17T01:35:24.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-17T01:35:24.376Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": ".gitignore",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-17T01:10:13.305Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-17T01:10:13.305Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "src\\App.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-01-16T17:03:23.689Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-16T17:03:23.689Z"
             }
           ]
         }

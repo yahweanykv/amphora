@@ -11,6 +11,18 @@ import { fileURLToPath } from 'url'; // Для получения __dirname в ES6-модулях
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Обслуживаем статические файлы из папки client/dist
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+});
+
+// API-роуты
+app.get('/api', (req, res) => {
+    res.json({ message: 'Hello from the server!' });
+});
+
 // Загружаем переменные окружения
 dotenv.config();
 
